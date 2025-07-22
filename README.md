@@ -1,46 +1,24 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>The Official YAFS Website</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/1.0.12/push.min.js"></script>
 </head>
 <body>
   <h1>Welcome to the Official YAFS Website</h1>
-  <button id="notifyBtn">Send Notification</button>
+  <button id="downloadBtn">S2 World Download</button>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const notifyBtn = document.getElementById("notifyBtn");
+      const downloadBtn = document.getElementById("downloadBtn");
 
-      notifyBtn.addEventListener("click", function () {
-        if (Push.Permission.has()) {
-          Push.create("Notification", {
-            body: "Welcome to the YAFS website!",
-            timeout: 4000,
-            onClick: function () {
-              window.focus();
-              this.close();
-            }
-          });
-        } else {
-          Push.Permission.request(
-            function () {
-              // Permission granted
-              Push.create("Hello world!", {
-                body: "Welcome to the YAFS website!",
-                timeout: 4000,
-                onClick: function () {
-                  window.focus();
-                  this.close();
-                }
-              });
-            },
-            function () {
-              // Permission denied
-              alert("Notification permission denied.");
-            }
-          );
-        }
+      downloadBtn.addEventListener("click", function () {
+        const link = document.createElement('a');
+        link.href = '/World-Downloads/yafs-s2.zip'; // Non Existant file
+        link.download = 'yafs-s2.zip'; 
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       });
     });
   </script>
