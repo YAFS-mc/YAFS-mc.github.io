@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,21 +6,42 @@
 </head>
 <body>
   <h1>Welcome to the Official YAFS Website</h1>
+  <button id="notifyBtn">Send Notification</button>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      if (Push.Permission.has()) {
-        Push.create("Hello world!", {
-          body: "Welcome to the YAFS website!",
-          timeout: 4000,
-          onClick: function () {
-            window.focus();
-            this.close();
-          }
-        });
-      } else {
-        Push.Permission.request();
-      }
+      const notifyBtn = document.getElementById("notifyBtn");
+
+      notifyBtn.addEventListener("click", function () {
+        if (Push.Permission.has()) {
+          Push.create("Hello world!", {
+            body: "Welcome to the YAFS website!",
+            timeout: 4000,
+            onClick: function () {
+              window.focus();
+              this.close();
+            }
+          });
+        } else {
+          Push.Permission.request(
+            function () {
+              // Permission granted
+              Push.create("Hello world!", {
+                body: "Welcome to the YAFS website!",
+                timeout: 4000,
+                onClick: function () {
+                  window.focus();
+                  this.close();
+                }
+              });
+            },
+            function () {
+              // Permission denied
+              alert("Notification permission denied.");
+            }
+          );
+        }
+      });
     });
   </script>
 </body>
