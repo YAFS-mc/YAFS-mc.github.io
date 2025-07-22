@@ -14,7 +14,7 @@
 
       notifyBtn.addEventListener("click", function () {
         if (Push.Permission.has()) {
-          Push.create("Hello world!", {
+          Push.create("Notification", {
             body: "Welcome to the YAFS website!",
             timeout: 4000,
             onClick: function () {
