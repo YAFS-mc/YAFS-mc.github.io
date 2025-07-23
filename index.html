@@ -5,13 +5,13 @@
 </head>
 <body>
   <h1>Welcome to the YAFS Website</h1>
-  <button id="downloadBtn">S2 World Download</button>
+  <button id="downloadBtnS2">S2 World Download</button>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const downloadBtn = document.getElementById("downloadBtn");
+      const downloadBtnS2 = document.getElementById("downloadBtnS2");
 
-      downloadBtn.addEventListener("click", function () {
+      downloadBtnS2.addEventListener("click", function () {
         const link = document.createElement('a');
         link.href = '/World-Downloads/yafs-s2.zip'; // Non Existant file
         link.download = 'yafs-s2.zip'; 
